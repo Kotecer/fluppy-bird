@@ -4,6 +4,8 @@ var myScore;
 var flag = false;
 var score = [];
 var j = 0;
+var golub = new Image(); 
+golub.src = "golub.png";
 console.log(j);
 
 function startGame() {
@@ -50,6 +52,9 @@ function component(width, height, color, x, y, type) {
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
+			if (color == "black"){
+				ctx.drawImage(golub, this.x, this.y);
+			}
         }
     }
     this.newPos = function() {
