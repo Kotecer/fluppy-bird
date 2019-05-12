@@ -6,6 +6,10 @@ var score = [];
 var j = 0;
 console.log(j);
 
+
+var golub = new Image();
+golub.src = "golub.png";
+
 function startGame() {
     rectangle = new component(30, 30, "black", 10, 120);
 	
@@ -50,6 +54,7 @@ function component(width, height, color, x, y, type) {
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
+	     ctx.drawImage(golub, this.x, this.y);
         }
     }
     this.newPos = function() {
