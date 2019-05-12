@@ -1,10 +1,14 @@
 var rectangle;
-var myObstacles = [];
+var Obstacles = [];
 var myScore;
 var flag = false;
+var score = [];
+var j = 0;
+console.log(j);
 
 function startGame() {
     rectangle = new component(30, 30, "black", 10, 120);
+	
     rectangle.gravity = 0.05;
     myScore = new component("20px", "lobster", "red", 10, 20, "text");
     myGameArea.start();
@@ -86,11 +90,12 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
-    for (i = 0; i < myObstacles.length; i++) {
-        if ((rectangle.crashWith(myObstacles[i])) && (!flag)) {
+    for (i = 0; i < Obstacles.length; i++) {
+        if ((rectangle.crashWith(Obstacles[i])) && (!flag)) {
 			flag = true;
-			
-			alert("game over");
+			console.log(j);
+			alert("game over",score);
+			location.reload();
             return;
 			
         } 
@@ -101,7 +106,8 @@ function updateGameArea() {
 	
 	
     myGameArea.clear();
-    myGameArea.frameNo += 2;
+    myGameArea.frameNo += 4;
+	j = 100;
     if (myGameArea.frameNo == 2 || everyinterval(150)) {
         x = myGameArea.canvas.width;
         minHeight = 20;
@@ -110,12 +116,12 @@ function updateGameArea() {
         minGap = 50;
         maxGap = 200;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "blue", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "yellow", x, height + gap));
+        Obstacles.push(new component(10, height, "blue", x, 0));
+        Obstacles.push(new component(10, x - height - gap, "yellow", x, height + gap));
     }
-    for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -2;
-        myObstacles[i].update();
+    for (i = 0; i < Obstacles.length; i += 1) {
+        Obstacles[i].x += -2;
+        Obstacles[i].update();
     }
     myScore.text="score: " + myGameArea.frameNo;
     myScore.update();
@@ -138,7 +144,8 @@ function accelerate(n) {
     rectangle.gravity = n;
 }
 
-function newGame(){
-	myGameArea.clear;
-	//startGame();
+
+
+for (var i = 0; i < score.length-1; i++) {
+	
 }
